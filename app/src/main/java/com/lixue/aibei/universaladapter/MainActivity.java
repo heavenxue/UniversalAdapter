@@ -11,6 +11,8 @@ import android.widget.ListView;
 
 import com.lixue.aibei.universaladapter.bean.Game;
 import com.lixue.aibei.universaladapter.bean.User;
+import com.lixue.aibei.universaladapter.factory.UserListItemFactory;
+import com.lixue.aibei.universaladapterlib.LoadMoreListItemFactory;
 import com.lixue.aibei.universaladapterlib.OnLoadMoreListener;
 import com.lixue.aibei.universaladapterlib.UniversalAdapter;
 
@@ -100,11 +102,11 @@ public class MainActivity extends AppCompatActivity implements OnLoadMoreListene
                 nextStart += size;
                 if(adapter == null){
                     adapter = new UniversalAdapter(objects);
-//                    adapter.addItemFactory(new UserListItemFactory(getActivity().getBaseContext()));
+                    adapter.addItemFactory(new UserListItemFactory(getBaseContext()));
 //                    adapter.addItemFactory(new GameListItemFactory(getActivity().getBaseContext()));
-//                    if(nextStart < 100){
-//                        adapter.setEnableLoadMore(new LoadMoreListItemFactory(MainActivity.this));
-//                    }
+                    if(nextStart < 100){
+                        adapter.setEnableLoadMore(new LoadMoreListItemFactory(MainActivity.this));
+                    }
                     listview.setAdapter(adapter);
                 }else{
                     adapter.loadMoreFinished();
@@ -119,6 +121,6 @@ public class MainActivity extends AppCompatActivity implements OnLoadMoreListene
 
     @Override
     public void onLoadMore(UniversalAdapter adapter) {
-
+        loadData();
     }
 }
