@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">UniversalAdapter</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_rcv_test">RcvTestActivity</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_view_pager_test">ViewPagerTestActivity</string>
 </resources>
