@@ -1,77 +1,69 @@
-针对中文,演示Markdown的各种语法
   
-大标题
-===================================
-  大标题一般显示工程名,类似html的\<h1\><br />
-  你只要在标题下面跟上=====即可
+UniversalAdapterLib
+===================
+ 通过封装BaseAdapter和RecyclerView.Adapter以及PagerAdapter得到一个通用简便的Adapter
 
   
-中标题
------------------------------------
-  中标题一般显示重点项,类似html的\<h2\><br />
-  你只要在标题下面输入------即可
+特点 
+---
+   提升item的独立性，完美支持item被多处复用
+   item会根据type来做自动复用
+   支持多种类型的item
+   仅仅会在item创建完毕后调用一次配置item的操作，不会避免重复建立监听器
+   一个item仅会触发一次绑定视图的操作
+   提供了getView()方法来代替findViewById
+   支持通过item的构造方法来传入Activity对象
+   支持通过item的构造方法来传入item中事件的回调
+   提供了getConvertedData(data, type)方法来对item传入的数据做转换，方便拆包和提升item的复用性
+   支持viewpager的正常加载模式和懒加载
+   支持快速将listview的适配器切换为recyclerView的适配器
+   viewpager的notifyDataSetChanged可以正常更新所有数据
+   支持recyclerView的添加头部和底部
+   支持适配器的数据自动绑定，只用操作数据便可自动notify界面
   
-### 小标题
-  小标题类似html的\<h3\><br />
-  小标题的格式如下 ### 小标题<br />
-  注意#和标题字符中间要有空格
+### 示例
+  ![github](https://github.com/heavenxue/UniversalAdapter/tree/raw/docs/demo.png "github")
 
-### 注意!!!下面所有语法的提示我都先用小标题提醒了!!! 
-
-### 单行文本框
-    这是一个单行的文本框,只要两个Tab再输入文字即可
-        
-### 多行文本框  
-    这是一个有多行的文本框
-    你可以写入代码等,每行文字只要输入两个Tab再输入文字即可
-    这里你可以输入一段代码
-
-### 比如我们可以在多行文本框里输入一段代码,来一个Java版本的HelloWorld吧
-    public class HelloWorld {
-
-      /**
-      * @param args
-	    */
-	    public static void main(String[] args) {
-		    System.out.println("HelloWorld!");
-
-	    }
-
-    }
-### 链接
-1.[点击这里你可以链接到www.google.com](http://www.google.com)<br />
-2.[点击这里我你可以链接到我的博客](http://guoyunsky.iteye.com)<br />
-
-###只是显示图片
-![github](http://github.com/unicorn.png "github")
-
-###想点击某个图片进入一个网页,比如我想点击github的icorn然后再进入www.github.com
-[![image]](http://www.github.com/)
-[image]: http://github.com/github.png "github"
-
-### 文字被些字符包围
-> 文字被些字符包围
->
-> 只要再文字前面加上>空格即可
->
-> 如果你要换行的话,新起一行,输入>空格即可,后面不接文字
-> 但> 只能放在行首才有效
-
-### 文字被些字符包围,多重包围
-> 文字被些字符包围开始
->
-> > 只要再文字前面加上>空格即可
->
->  > > 如果你要换行的话,新起一行,输入>空格即可,后面不接文字
->
-> > > > 但> 只能放在行首才有效
-
-### 特殊字符处理
-有一些特殊字符如<,#等,只要在特殊字符前面加上转义字符\即可<br />
-你想换行的话其实可以直接用html标签\<br /\>
-
-
-
-* 在行首加点
-行首输入*，空格后输入内容即可
+### 一、ListView+GridView的通用适配器——UniversalAdapter
+    只需继承UniversalAdapter便可实现适配器
     
+     listView.setAdapter(new UniversalAdapter<DemoMode>(data) {
+        public AdapterItem<DemoMode> createItem(Object type) {
+            return new UserItem();
+        }
+     });
+     
+
+### 二、RecyclerView的通用适配器——UniversalRcvAdapter
+    private UniversalRcvAdapter<DemoMode> getAdapter(List<DemoMode> data) {
+            return new UniversalRcvAdapter<DemoMode>(data) {
+    
+                @Override
+                public Object getItemType(DemoMode demoModel) {
+                    return demoModel.type;
+                }
+    
+                @NonNull
+                @Override
+                public AdapterItem createItem(Object type) {
+                    return new UserItem();
+                }
+            };
+        }
+        
+### 三、ViewPager的通用适配器——UniversalPagerAdapter
+     private UniversalPagerAdapter<DemoMode> test01(List<DemoMode> data) {
+            return new UniversalPagerAdapter<DemoMode>(data) {
+    
+                @Override
+                public Object getItemType(DemoMode demoModel) {
+                    return demoModel.type;
+                }
+    
+                @NonNull
+                @Override
+                public AdapterItem createItem(Object type) {
+                   return new UserItem();
+                }
+            };
+        }
