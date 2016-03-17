@@ -83,6 +83,7 @@ public class ViewPagerTestActivity extends AppCompatActivity {
             public AdapterItem createItem(Object type) {
                 return new UserItem();
             }
+
         };
     }
 

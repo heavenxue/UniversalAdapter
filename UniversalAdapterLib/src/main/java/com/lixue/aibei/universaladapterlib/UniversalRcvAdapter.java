@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 适用于RecyclerView适配器
  * Created by Administrator on 2016/3/16.
  */
 public abstract class UniversalRcvAdapter<T> extends RecyclerView.Adapter implements IAdapter<T>{
@@ -94,5 +95,4 @@ public abstract class UniversalRcvAdapter<T> extends RecyclerView.Adapter implem
             holder.isNew = false;
         }
     }
-
 }

@@ -63,4 +63,5 @@ public class UserItem implements AdapterItem<DemoMode> {
         }
 
     }
+
 }

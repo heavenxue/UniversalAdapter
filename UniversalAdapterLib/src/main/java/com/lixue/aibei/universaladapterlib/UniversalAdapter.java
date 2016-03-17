@@ -111,5 +111,6 @@ public abstract class UniversalAdapter<T> extends BaseAdapter implements IAdapte
     public Object getItem(int i) {
         return mDataList.get(i);
     }
+
 }
 

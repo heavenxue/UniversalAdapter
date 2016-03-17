@@ -33,6 +33,8 @@
             android:label="@string/title_activity_view_pager_test"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".ExpandableListViewTestActivity">
+        </activity>
     </application>
 
 </manifest>

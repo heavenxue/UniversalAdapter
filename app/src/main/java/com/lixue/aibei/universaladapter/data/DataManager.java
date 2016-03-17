@@ -6,7 +6,6 @@ import com.lixue.aibei.universaladapter.R;
 import com.lixue.aibei.universaladapter.demo.DemoMode;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -21,7 +20,6 @@ public class DataManager {
      * 模拟加载数据的操作
      */
     public static List<DemoMode> loadData(Context context, int num) {
-        List<String> originList = Arrays.asList(context.getResources().getStringArray(R.array.country_names));
         List<DemoMode> list = new ArrayList<>();
         for (int i = 0; i < num; i++) {
             DemoMode model = new DemoMode();
