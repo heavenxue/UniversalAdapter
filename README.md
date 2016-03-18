@@ -1,7 +1,7 @@
   
 UniversalAdapterLib
 ===================
- 通过封装BaseAdapter和RecyclerView.Adapter以及PagerAdapter得到一个通用简便的Adapter
+ 通过封装BaseAdapter和RecyclerView.Adapter以及PagerAdapter,BaseAExpandableListAdapter得到一个通用简便的Adapter
 
   
 特点 
@@ -66,4 +66,21 @@ UniversalAdapterLib
                    return new UserItem();
                 }
             };
+        }
+### 四、ExpandableListView的通用适配器——UniversalExpandableAdapter
+        private UniversalExpandaleAdapter<DemoMode> test01(List<DemoMode> groups,List<List<DemoMode>> childs){
+            universalExpandaleAdapter = new UniversalExpandaleAdapter<DemoMode>(groups,childs){
+    
+               @NonNull
+               @Override
+               public AdapterItem createItem(Object type) {
+                   return null;
+               }
+    
+               @Override
+               public ExpandableApdaterItem createItems(Object type) {
+                   return new ExpandUserItem();
+               }
+           };
+            return universalExpandaleAdapter;
         }
